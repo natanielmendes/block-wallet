@@ -1,8 +1,8 @@
 # Todo list
 
 ## Imperative
-- [ ] Creation of a user profile
-- [ ] Creation of a bitcoin address
+- [x] Creation of a user profile
+- [x] Creation of a bitcoin address
 - [ ] Save and load the profile with the bitcoin wallet
 - [ ] Securing the wallet with an encryption system
 - [ ] See the value of the wallet in BTC
