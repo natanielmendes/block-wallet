@@ -21,8 +21,16 @@ Profile.prototype.newProfile = function(username) {
 // Create a profile from an encrypted save
 Profile.prototype.profileFromSave = function(encryptedSave, password) {
   var decipher = crypto.createDecipher(encryption, password);
-  save = decipher.update(encryptedSave,'hex','utf8') + decipher.final('utf8');
-  return save;
+  var save = JSON.parse(decipher.update(encryptedSave,'hex','utf8') + decipher.final('utf8'));
+  this.profileFromProperties(save['username'], save['wif']);
+}
+
+// Create a profile from properties
+Profile.prototype.profileFromProperties = function(username, wif) {
+  this.username = username;
+  this.wif = wif;
+  var keypair = bitcoinjs.ECPair.fromWIF(wif);
+  this.address = keypair.getAddress();
 }
 
 // Return an encrypted save of the profile
